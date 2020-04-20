@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sylius\Component\Mailer\Event;
 
 use Sylius\Component\Mailer\Model\EmailInterface;
-use Symfony\Component\EventDispatcher\Event;
+use SyliusLabs\Polyfill\Symfony\EventDispatcher\Event;
 
 final class EmailSendEvent extends Event
 {
@@ -33,6 +33,9 @@ final class EmailSendEvent extends Event
     /** @var string[] */
     protected $replyTo;
 
+    /**
+     * @param mixed $message
+     */
     public function __construct($message, EmailInterface $email, array $data, array $recipients = [], array $replyTo = [])
     {
         $this->message = $message;
@@ -52,6 +55,9 @@ final class EmailSendEvent extends Event
         return $this->email;
     }
 
+    /**
+     * @return mixed
+     */
     public function getMessage()
     {
         return $this->message;
